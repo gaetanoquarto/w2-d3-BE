@@ -50,8 +50,11 @@ public class RegistroPresenze {
 		FileUtils.writeStringToFile(file, str, ENCODING, true);
 	}
 	public static void leggiFile(File file) throws IOException {
-	String content = FileUtils.readFileToString(file, ENCODING);
-		System.out.println(content);
+        String[] content = (FileUtils.readFileToString(file, ENCODING)).replace("@", ": ").split("#");
+
+ for( int i = 0; i < content.length; i++ ) {
+     System.out.println( content[i] );
+ }
 	}
 
 }
