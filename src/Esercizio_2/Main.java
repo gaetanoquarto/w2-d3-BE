@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		Random numR = new Random();
 		List<Integer> l1 = new ArrayList<>(3000);
@@ -26,16 +26,21 @@ public class Main {
 		
 		
 			t1.start();
+			
+				t1.join();
+			
 			t2.start();
+			
+				t2.join();
+			
 			t3.start();
 			
-			try {
-	            t1.join();
-	            t2.join();
-	            t3.join();
-	        } catch (InterruptedException e) {
-	            
-	        }
+				t3.join();
+			
+			
+			System.out.println("Thread 1: " + thread1.ottieniSommaParziale());
+			System.out.println("Thread 2: " + thread2.ottieniSommaParziale());
+			System.out.println("Thread 3: " +  thread3.ottieniSommaParziale());
 			
 			
 			long sommaTotale = thread1.ottieniSommaParziale() + thread2.ottieniSommaParziale() + thread3.ottieniSommaParziale();
